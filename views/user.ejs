@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %> -Microblog</title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+    <style type="text/css">
+    	body{
+    		padding-top:60px;
+    		padding-bottom: 40px;
+    	}
+    </style>
+    <link href="stylesheets/bootstrap-responsive.css" rel="stylesheet">
+  </head>
+  <body>
+
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+	      	</a>
+	      	<a class="brand" href="/">Microblog</a>
+	      	<div class="nav-collapse">
+				<ul class="nav">
+					<li class="active"><a href="/">HomePage</a></li> 
+					<% if(!user) { %>
+						<li><a href="/login">Login</a></li>
+						<li><a href="/reg">Register</a></li>
+					<% } else { %>
+						<li><a href="/logout">Logout</a></li>
+					<% } %>
+				</ul> 
+			</div>
+	    </div>
+	  </div>
+	</div>
+
+	<div id="container" class="container">
+		
+		<% if (user) { %>
+			<form method="post" action="/post" class="well form-inline center" style="text-align: center;">
+				<input type="text" class="span8" name="post">
+				<button type="submit" class="btn btn-success"><i class="icon-comment icon-white"></i> Say</button> 
+			</form>
+		<% } %>
+
+		<% posts.forEach(function(post, index) {
+      		if (index % 3 == 0) { %>
+        		<div class="row">
+    		<%} %>
+			<div class="span4">
+				<h2><a href="/u/<%= post.user %>"><%= post.user %></a> Said</h2> 
+				<p><small><%= post.time %></small></p>
+				<p><%= post.post %></p>
+  			</div>
+			<% if (index % 3 == 2) { %>
+    			</div><!-- end row -->
+			<% } %>
+		<%}) %>
+		<% if (posts.length % 3 != 0) { %>
+  			</div><!-- end row -->
+		<%} %>
+				
+		<hr />
+		<footer>
+			<p><a href="http://www.felixqk.com/" target="_blank">Felixqk</a> 2012</p>
+		</footer>
+	</div>
+  </body>
+   <script src="/javascripts/jquery.js"></script>
+   <script src="/javascripts/bootstrap.js"></script>
+</html>

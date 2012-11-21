@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %> -Microblog</title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+    <style type="text/css">
+    	body{
+    		padding-top:60px;
+    		padding-bottom: 40px;
+    	}
+    </style>
+    <link href="stylesheets/bootstrap-responsive.css" rel="stylesheet">
+  </head>
+  <body>
+
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+	      	</a>
+	      	<a class="brand" href="/">Microblog</a>
+	      	<div class="nav-collapse">
+				<ul class="nav">
+					<li class="active"><a href="/">HomePage</a></li> 
+					<% if(!user) { %>
+						<li><a href="/login">Login</a></li>
+						<li><a href="/reg">Register</a></li>
+					<% } else { %>
+						<li><a href="/logout">Logout</a></li>
+					<% } %>
+				</ul> 
+			</div>
+	    </div>
+	  </div>
+	</div>
+
+	<div id="container" class="container">
+		
+		<% if (success) { %>
+			<div class="alert alert-success">
+				<%= success %>
+			</div>
+		<% } %>
+		<% if (error) { %>
+			<div class="alert alert-error">
+				<%= error %>
+			</div>
+		<% } %>
+				
+		<form class="form-horizontal" method="post">
+			<fieldset>
+				<legend>User Register</legend>
+				<div class="control-group">
+					<label class="control-label" for="username">User Name</label> 
+					<div class="controls">
+￼￼						<input type="text" class="input-xlarge" id="username" name="username">
+						<p class="help-block">Your account name, used for display and login。</p> 
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="password">Password</label> 
+					<div class="controls">
+￼￼						<input type="password" class="input-xlarge" id="password" name="password"> 
+					</div>
+￼ 				</div>
+				<div class="control-group">
+					<label class="control-label" for="password-repeat">Repeat Password</label> 
+					<div class="controls">
+						<input type="password" class="input-xlarge" id="password-repeat" name="password-repeat">
+          			</div>
+       			</div>
+				<div class="form-actions">
+					<button type="submit" class="btn btn-primary">Register</button>
+        		</div>
+        	</fieldset>				
+		</form>
+		
+		<hr />
+		<footer>
+			<p><a href="http://www.felixqk.com/" target="_blank">Felixqk</a> 2012</p>
+		</footer>
+	</div>
+  </body>
+   <script src="/javascripts/jquery.js"></script>
+   <script src="/javascripts/bootstrap.js"></script>
+</html>
